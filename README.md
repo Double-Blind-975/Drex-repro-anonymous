@@ -4,7 +4,7 @@ This repository provides the source code, input data, and simulation necessary t
 
 Clone the repository using the following command:
 ```bash
-~$ git clone -b reproducibility --single-branch https://github.com/dynostore/D-rex.git
+~$ git clone https://github.com/Double-Blind-975/Drex-repro-anonymous.git
 ```
 
 ## Reproducing Results
