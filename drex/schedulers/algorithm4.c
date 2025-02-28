@@ -11,7 +11,7 @@
 #include "../utils/k_means_clustering.h"
 #include "../utils/combinations.h"
 #include "../utils/remove_node.h"
-#include "bogdan_balance_penalty.h"
+#include "drexlb_balance_penalty.h"
 #include "algorithm1.h"
 #include "least_used_node.h"
 #include "random.h"
@@ -1451,7 +1451,7 @@ int main(int argc, char *argv[]) {
     double data_duration_on_system = atof(argv[3]);
     double reliability_threshold = atof(argv[4]);
     int number_of_repetition = atoi(argv[5]);
-    int algorithm = atoi(argv[6]); // 0: random / 1: min_storage / 2: min_time / 3: hdfs_3_replication / 4: drex / 5: Bogdan / 6: hdfs_rs / 7: glusterfs
+    int algorithm = atoi(argv[6]); // 0: random / 1: min_storage / 2: min_time / 3: hdfs_3_replication / 4: drex / 5: drexlb / 6: hdfs_rs / 7: glusterfs
     const char *input_supplementary_node = argv[7];
     
     //~ printf("data_size, chunk_size, N, K, chosen_nodes\n");
@@ -1555,7 +1555,7 @@ int main(int argc, char *argv[]) {
         strcpy(alg_to_print, "alg2");
     }
     else if (algorithm == 5) {
-        strcpy(alg_to_print, "alg_bogdan");
+        strcpy(alg_to_print, "alg_drexlb");
     }
     else if (algorithm == 1) {
         strcpy(alg_to_print, "alg1_c");
@@ -1818,7 +1818,7 @@ int main(int argc, char *argv[]) {
     
     /** Simulation main loop **/
     
-    printf("data_size, chunk_size, N, K, chosen_nodes\n");
+    //~ printf("data_size, chunk_size, N, K, chosen_nodes\n");
     
     for (i = 0; i < count; i++) {
         
@@ -1829,10 +1829,10 @@ int main(int argc, char *argv[]) {
         
         add_time_to_print(&list_time, submit_times[i], size_stored);
        
-        //~ if (i%250000 == 0) {
+        if (i%250000 == 0) {
         //~ if (i%50000 == 0) {
-            //~ printf("Data %d/%d of size %f\n", i, count, sizes[i]);
-        //~ }
+            printf("Data %d/%d of size %f\n", i, count, sizes[i]);
+        }
         
         if (min_data_size > sizes[i]) {
             min_data_size = sizes[i];

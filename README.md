@@ -9,7 +9,7 @@ Clone the repository using the following command:
 
 ## Reproducing Results
 
-To reproduce Figures 5, 7, 8, 9 and Tables V and VI, run the following command:
+To reproduce Figures 5, 7, 8, 9, 10, 11 and 12, run the following command:
 ```bash
 ~/D-rex$ bash test/reproducibility.sh
 ```
@@ -39,26 +39,32 @@ Run experiments with different node configurations:
 ~/D-rex$ bash test/run_experiments_drex_only.sh 365 -1 drex/inputs/nodes/10_most_unreliable_nodes.csv drex/inputs/data/MEVA_merged.csv 250 drex/inputs/nodes/no_supplementary_nodes.csv 0 0 0 drex/
 ~/D-rex$ bash test/run_experiments_drex_only.sh 365 -1 drex/inputs/nodes/most_used_node_x10.csv drex/inputs/data/MEVA_merged.csv 250 drex/inputs/nodes/no_supplementary_nodes.csv 0 0 0 drex/
 ~/D-rex$ bash test/run_experiments_drex_only.sh 365 -1 drex/inputs/nodes/10_most_reliable_nodes.csv drex/inputs/data/MEVA_merged.csv 250 drex/inputs/nodes/no_supplementary_nodes.csv 0 0 0 drex/
-~/D-rex$ python3 plot/mininet/plot_size_stored_and_efficiency_different_set_of_nodes.py _MEVA_merged_365_-1.0_250_max0
+~/D-rex$ python3 plot/mininet/plot_size_stored_and_efficiency_different_set_of_nodes.py _MEVA_merged_365_-1.0_250_max0 only_storage
 ```
 
-### Figure 8:
+### Figure 9:
 Run experiments to differentiate the different data operations:
 ```bash
 ~/D-rex$ bash test/run_experiments_drex_only.sh 365 0.9999 drex/inputs/nodes/10_most_used_nodes.csv drex/inputs/data/MEVA_merged.csv 1 drex/inputs/nodes/no_supplementary_nodes.csv 0 0 0 drex/
 ~/D-rex$ python3 plot/mininet/stacked_times.py
 ```
 
-### Figure 9:
+### Figure 10:
 Run experiments with different datasets:
 ```bash
 ~/D-rex$ bash test/run_experiments_drex_only.sh 365 -1 drex/inputs/nodes/10_most_used_nodes.csv drex/inputs/data/processed_sentinal-2_256351_data.csv 1 drex/inputs/nodes/no_supplementary_nodes.csv 0 0 0 drex/
 ~/D-rex$ bash test/run_experiments_drex_only.sh 365 -1 drex/inputs/nodes/10_most_used_nodes.csv drex/inputs/data/IBM_385707_data.csv 1 drex/inputs/nodes/no_supplementary_nodes.csv 0 0 0 drex/
 ~/D-rex$ bash test/run_experiments_drex_only.sh 365 -1 drex/inputs/nodes/10_most_used_nodes.csv drex/inputs/data/FB_merged_8337_data.csv 1 drex/inputs/nodes/no_supplementary_nodes.csv 0 0 0 drex/
-~/D-rex$ python3 plot/mininet/plot_size_stored_and_efficiency_different_datasets.py 10_most_used_nodes_-1
+~/D-rex$ python3 plot/mininet/plot_size_stored_and_efficiency_different_datasets.py 10_most_used_nodes_-1 only_storage
 ```
 
-### Tables V VI:
+### Figure 8 and 11:
+Plot the average throughput difference with D-Rex algorithms (requires the experiments for Figures 7 and 10 to have been run first):
+```bash
+~/D-rex$ python3 plot/mininet/plot_throughput_vs_drex.py _MEVA_merged_365_-1.0_250_max0 
+```
+
+### Figure 12:
 Run experiments to analyze node failure and reliability. The standard output then prints the results:
 ```bash
 ~/D-rex$ bash test/run_experiments_drex_only.sh 365 0.9 drex/inputs/nodes/10_most_unreliable_nodes.csv drex/inputs/data/MEVA_merged.csv 250 drex/inputs/nodes/no_supplementary_nodes.csv 3 0 0 drex/inputs/nodes/10_most_unreliable_nodes_failure_MEVA_merged_250.csv
